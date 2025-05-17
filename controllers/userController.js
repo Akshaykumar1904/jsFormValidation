@@ -9,7 +9,7 @@ const registerUser = async (req, res) => {
     const user = await User.create({ name, email, password });
     await user.save();
 
-  const verificationToken = crypto.randomBytes(32).toString('hex');
+    const verificationToken = crypto.randomBytes(32).toString('hex');
     user.emailVerificationToken = verificationToken;
     user.emailVerified = false;
     await user.save({ validateBeforeSave: false });
